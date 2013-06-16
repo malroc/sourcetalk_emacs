@@ -42,6 +42,4 @@
                                    (number-to-string
                                     (sourcetalk-get-current-line))))))))
 
-(global-set-key (kbd "C-c C-s") 'sourcetalk-start-external-conference)
-
 (provide 'sourcetalk)
