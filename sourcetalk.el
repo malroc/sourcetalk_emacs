@@ -22,7 +22,7 @@
 
 (defun sourcetalk-get-buffer-file-name ()
   "Returns the file name of the current buffer"
-  ((file-name-nondirectory buffer-file-name (current-buffer))))
+  (file-name-nondirectory (buffer-file-name (current-buffer))))
 
 (defun sourcetalk-start-external-conference ()
   "Starts a new SourceTalk conference in a browser window"
