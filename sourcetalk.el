@@ -27,7 +27,6 @@
 (defun sourcetalk-start-external-conference ()
   "Starts a new SourceTalk conference in a browser window"
   (interactive)
-  (setq test-cont (test-content))
   (request
    "http://sourcetalk.net/conferences.json"
    :type "POST"
