@@ -36,7 +36,7 @@
    :success (function*
              (lambda
                (&key data &allow-other-keys)
-               (message (concat "http://sourcetalk.net/conferences/"
+               (browse-url (concat "http://sourcetalk.net/conferences/"
                                    (assoc-default 'slug data)
                                    "/"
                                    (number-to-string
