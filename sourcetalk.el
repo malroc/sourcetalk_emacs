@@ -3,8 +3,12 @@
 ;; Copyright (C) 2013 Oleg Kalistratov
 
 ;; Author: Oleg Kalistratov <oleg@sourcetalk.net>
+;; URL: https://github.com/malroc/sourcetalk_emacs
 ;; Keywords: sourcetalk code discussion
-;; Version: 0.0.1
+;; Version: 0.0.2
+;; Package-Requires: ((request "0.2.0"))
+
+;; Code goes here
 
 (require 'request)
 
@@ -43,3 +47,5 @@
                                     (sourcetalk-get-current-line))))))))
 
 (provide 'sourcetalk)
+
+;;; sourcetalk.el ends here
