@@ -5,7 +5,7 @@
 ;; Author: Oleg Kalistratov <oleg@sourcetalk.net>
 ;; URL: https://github.com/malroc/sourcetalk_emacs
 ;; Keywords: sourcetalk code discussion
-;; Version: 0.0.2
+;; Version: 1.1.0
 ;; Package-Requires: ((request "0.2.0"))
 
 ;; Code goes here
@@ -32,7 +32,7 @@
   "Starts a new SourceTalk conference in a browser window"
   (interactive)
   (request
-   "http://sourcetalk.net/conferences.json"
+   "http://app.sourcetalk.net/conferences.json"
    :type "POST"
    :data `(("conference[file_name]" . ,(sourcetalk-get-buffer-file-name))
            ("conference[source]" . ,(sourcetalk-get-buffer-content)))
@@ -40,7 +40,7 @@
    :success (function*
              (lambda
                (&key data &allow-other-keys)
-               (browse-url (concat "http://sourcetalk.net/conferences/"
+               (browse-url (concat "http://app.sourcetalk.net/conferences/"
                                    (assoc-default 'slug data)
                                    "/"
                                    (number-to-string
