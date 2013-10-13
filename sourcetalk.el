@@ -35,16 +35,14 @@
    "http://app.sourcetalk.net/conferences.json"
    :type "POST"
    :data `(("conference[file_name]" . ,(sourcetalk-get-buffer-file-name))
-           ("conference[source]" . ,(sourcetalk-get-buffer-content)))
+           ("conference[source]" . ,(sourcetalk-get-buffer-content))
+           ("conference[scroll_position]" . ,(number-to-string (sourcetalk-get-current-line))))
    :parser 'json-read
    :success (function*
              (lambda
                (&key data &allow-other-keys)
                (browse-url (concat "http://app.sourcetalk.net/conferences/"
-                                   (assoc-default 'slug data)
-                                   "/"
-                                   (number-to-string
-                                    (sourcetalk-get-current-line))))))))
+                                   (assoc-default 'slug data)))))))
 
 (provide 'sourcetalk)
 
