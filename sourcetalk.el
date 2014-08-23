@@ -1,11 +1,11 @@
 ;;; sourcetalk.el --- SourceTalk (http://sourcetalk.net) plugin for Emacs
 
-;; Copyright (C) 2013 Oleg Kalistratov
+;; Copyright (C) 2014 Oleg Kalistratov
 
 ;; Author: Oleg Kalistratov <oleg@sourcetalk.net>
 ;; URL: https://github.com/malroc/sourcetalk_emacs
 ;; Keywords: sourcetalk code discussion
-;; Version: 1.1.0
+;; Version: 1.2.0
 ;; Package-Requires: ((request "0.2.0"))
 
 ;; Code goes here
@@ -34,17 +34,19 @@
   (request
    "http://app.sourcetalk.net/conferences.json"
    :type "POST"
-   :data `(("conference[file_name]" . ,(sourcetalk-get-buffer-file-name))
-           ("conference[source]" . ,(sourcetalk-get-buffer-content)))
+   :data `(("conference[source_files_attributes][0][name]" .
+            ,(sourcetalk-get-buffer-file-name))
+           ("conference[source_files_attributes][0][source]" .
+            ,(sourcetalk-get-buffer-content))
+           ("conference[source_files_attributes][0][scroll_position]" .
+            ,(number-to-string
+              (sourcetalk-get-current-line))))
    :parser 'json-read
    :success (function*
              (lambda
                (&key data &allow-other-keys)
                (browse-url (concat "http://app.sourcetalk.net/conferences/"
-                                   (assoc-default 'slug data)
-                                   "/"
-                                   (number-to-string
-                                    (sourcetalk-get-current-line))))))))
+                                   (assoc-default 'slug data)))))))
 
 (provide 'sourcetalk)
 
